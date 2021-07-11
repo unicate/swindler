@@ -13,10 +13,19 @@ namespace Unicate\Swindler\Core;
 class Factory {
 
     public static function create($locale = 'de_CH'): LocaleInterface {
-        $localeClass = '\Unicate\Swindler\Locales\\' . $locale . '\Locale';
+        $localeClass = self::getLocaleClass($locale);
         $rp = new RandomPattern();
-        echo __NAMESPACE__;
         return new $localeClass($rp);
+
+    }
+
+    private static function getLocaleClass(string $locale): string {
+        $className = sprintf('\Unicate\Swindler\Locales\%s\Locale', $locale);
+        if (class_exists($className, true)) {
+            return $className;
+        } else {
+            throw new \InvalidArgumentException(sprintf('Unable to find class "%s".', $className));
+        }
 
     }
 
