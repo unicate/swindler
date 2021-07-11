@@ -15,6 +15,17 @@ class SwindlerTest extends TestCase {
         $this->assertEquals(1, 1);
     }
 
+    public function testGetPhone_de_CH() {
+        $n = 0;
+        $swindler = Factory::create();
+        while ($n < 100) {
+            echo 'Mobile:' . $swindler->getMobileNo() . " \n";
+            echo 'Phone: ' . $swindler->getPhoneNo() . " \n";
+            $n++;
+        }
+        $this->assertEquals(1, 1);
+    }
+
 
     public function testGetSurname_de_DE() {
         $n = 0;

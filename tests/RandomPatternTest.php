@@ -28,8 +28,8 @@ class RandomStringTest extends TestCase {
 
     public function testMail() {
         $n = 0;
+        $rand = new RandomPattern();
         while ($n < 100) {
-            $rand = new RandomPattern();
             echo (string)$rand
                 ->setStringLC(3, 10)
                 ->set('.')
