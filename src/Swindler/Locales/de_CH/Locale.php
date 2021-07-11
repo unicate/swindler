@@ -66,11 +66,93 @@ class Locale extends GenericLocale implements LocaleInterface {
     }
 
     public function getMobileNo(): string {
-
+        return $this->randomPattern->chooseOne(
+            [
+                /**
+                 * +41 79 611 91 52
+                 */
+                $this->randomPattern
+                    ->set('+41 ')
+                    ->chooseOne(['75', '76', '77', '78', '79'])
+                    ->set(' ')
+                    ->setNumber(100, 999)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->toString(),
+                /**
+                 * +41 (0)79 611 91 52
+                 */
+                $this->randomPattern
+                    ->set('+41 (0)')
+                    ->chooseOne(['75', '76', '77', '78', '79'])
+                    ->set(' ')
+                    ->setNumber(100, 999)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->toString(),
+                /**
+                 * 079 611 91 52
+                 */
+                $this->randomPattern
+                    ->chooseOne(['075', '076', '077', '078', '079'])
+                    ->set(' ')
+                    ->setNumber(100, 999)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->toString()
+            ]
+        )->toString();
     }
 
     public function getPhoneNo(): string {
+        return $this->randomPattern->chooseOne(
+            [
+                /**
+                 * +41 52 611 91 52
+                 */
+                $this->randomPattern
+                    ->set('+41 ')
+                    ->chooseOne(['21', '22', '24', '26', '27', '31', '32', '33', '34', '41', '43', '44', '51', '52', '55', '56', '61', '62', '71', '81', '91'])
+                    ->set(' ')
+                    ->setNumber(100, 999)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->toString(),
 
+                /**
+                 * 052 611 91 52
+                 */
+                $this->randomPattern
+                    ->chooseOne(['021', '022', '024', '026', '027', '031', '032', '033', '034', '041', '043', '044', '051', '052', '055', '056', '061', '062', '071', '081', '091'])
+                    ->set(' ')
+                    ->setNumber(100, 999)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->toString(),
+                /**
+                 * 0800 52 51 378
+                 */
+                $this->randomPattern
+                    ->set('0800 ')
+                    ->setNumber(0, 99, 2)
+                    ->set(' ')
+                    ->setNumber(0, 99, 2)
+                    ->set(' ')
+                    ->setNumber(0, 99, 3)
+                    ->toString()
+
+            ]
+        )->toString();
     }
 
 
