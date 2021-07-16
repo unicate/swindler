@@ -9,10 +9,12 @@ declare(strict_types=1);
 
 namespace Unicate\Swindler\Locales\de_CH;
 
+use Unicate\Swindler\Core\AddressInterface;
 use Unicate\Swindler\Core\GenericLocale;
 use Unicate\Swindler\Core\LocaleInterface;
 
 class Locale extends GenericLocale implements LocaleInterface {
+
 
     public function getSurname(): string {
         $lastName = array(
@@ -46,11 +48,21 @@ class Locale extends GenericLocale implements LocaleInterface {
     }
 
     public function getStreet(): string {
-
+        return $this->randomPattern
+            //->setStringUCFirst(3, 10)
+            //->chooseOne(['-Gasse', '-Platz', '-Strasse', 'strasse', 'str.', 'weg', 'allee', '-Allee'])
+            ->set(' ')
+            ->setNumber(1, 999)
+            ->setStringLC(0, 1)
+            ->toString();
     }
 
     public function getDateOfBirth(): string {
-
+        return $this->randomPattern->setDateTime(
+            '01.01.1900',
+            '31.12.2005',
+            'd.m.Y'
+        )->toString();
     }
 
     public function getCity(): string {
@@ -69,7 +81,7 @@ class Locale extends GenericLocale implements LocaleInterface {
         return $this->randomPattern->chooseOne(
             [
                 /**
-                 * +41 79 611 91 52
+                 * Example: +41 79 611 91 52
                  */
                 $this->randomPattern
                     ->set('+41 ')
@@ -82,7 +94,7 @@ class Locale extends GenericLocale implements LocaleInterface {
                     ->setNumber(0, 99, 2)
                     ->toString(),
                 /**
-                 * +41 (0)79 611 91 52
+                 * Example: +41 (0)79 611 91 52
                  */
                 $this->randomPattern
                     ->set('+41 (0)')
@@ -95,7 +107,7 @@ class Locale extends GenericLocale implements LocaleInterface {
                     ->setNumber(0, 99, 2)
                     ->toString(),
                 /**
-                 * 079 611 91 52
+                 * Example: 079 611 91 52
                  */
                 $this->randomPattern
                     ->chooseOne(['075', '076', '077', '078', '079'])
@@ -114,7 +126,7 @@ class Locale extends GenericLocale implements LocaleInterface {
         return $this->randomPattern->chooseOne(
             [
                 /**
-                 * +41 52 611 91 52
+                 * Example: +41 52 611 91 52
                  */
                 $this->randomPattern
                     ->set('+41 ')
@@ -128,7 +140,7 @@ class Locale extends GenericLocale implements LocaleInterface {
                     ->toString(),
 
                 /**
-                 * 052 611 91 52
+                 * Example: 052 611 91 52
                  */
                 $this->randomPattern
                     ->chooseOne(['021', '022', '024', '026', '027', '031', '032', '033', '034', '041', '043', '044', '051', '052', '055', '056', '061', '062', '071', '081', '091'])
@@ -139,20 +151,12 @@ class Locale extends GenericLocale implements LocaleInterface {
                     ->set(' ')
                     ->setNumber(0, 99, 2)
                     ->toString(),
-                /**
-                 * 0800 52 51 378
-                 */
-                $this->randomPattern
-                    ->set('0800 ')
-                    ->setNumber(0, 99, 2)
-                    ->set(' ')
-                    ->setNumber(0, 99, 2)
-                    ->set(' ')
-                    ->setNumber(0, 99, 3)
-                    ->toString()
-
             ]
         )->toString();
+    }
+
+    public function getAddress(): AddressInterface {
+        return $this->address->loadRandomAddress();
     }
 
 

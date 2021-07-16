@@ -30,7 +30,7 @@ class RandomPattern {
         } else {
             $this->chars = $chars;
         }
-        $this->seed();
+        //$this->seed();
     }
 
     public function set($string): RandomPattern {
@@ -40,7 +40,7 @@ class RandomPattern {
 
     private function generateString($minLength, $maxLength): string {
         $str = '';
-        $length = $this->random($minLength, $maxLength - 1);
+        $length = $this->random($minLength, $maxLength);
         for ($i = 0; $i < $length; $i++) {
             $pos = $this->random(0, strlen($this->chars) - 1);
             $str .= substr($this->chars, $pos, 1);

@@ -10,6 +10,8 @@ declare(strict_types=1);
 namespace Unicate\Swindler\Core;
 
 
+use Unicate\Swindler\Core\Address;
+
 interface LocaleInterface {
 
     public function getSurname(): string;
@@ -30,5 +32,11 @@ interface LocaleInterface {
 
     public function getPhoneNo(): string;
 
+    public function getAddress(): AddressInterface;
+
+    /*
+     * Amount
+     * Person
+     */
 
 }

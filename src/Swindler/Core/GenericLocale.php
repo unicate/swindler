@@ -9,11 +9,13 @@ declare(strict_types=1);
 
 namespace Unicate\Swindler\Core;
 
-
 class GenericLocale {
     protected $randomPattern;
+    protected $address;
 
-    public function __construct(RandomPattern $randomPattern) {
+    public function __construct(RandomPattern $randomPattern, AddressInterface $address) {
         $this->randomPattern = $randomPattern;
+        $this->address = $address;
+
     }
 }

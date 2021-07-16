@@ -11,6 +11,7 @@ namespace Unicate\Swindler\Locales\de_DE;
 
 use Unicate\Swindler\Core\GenericLocale;
 use Unicate\Swindler\Core\LocaleInterface;
+use Unicate\Swindler\Core\Address;
 
 class Locale extends GenericLocale implements LocaleInterface {
 
@@ -52,5 +53,8 @@ class Locale extends GenericLocale implements LocaleInterface {
 
     }
 
+    public function getAddress(): Address {
+
+    }
 
 }

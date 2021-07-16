@@ -10,12 +10,15 @@ declare(strict_types=1);
 namespace Unicate\Swindler\Core;
 
 
+use Unicate\Swindler\Locales\de_CH\Address;
+
 class Factory {
 
     public static function create($locale = 'de_CH'): LocaleInterface {
         $localeClass = self::getLocaleClass($locale);
         $rp = new RandomPattern();
-        return new $localeClass($rp);
+        $addr = new Address();
+        return new $localeClass($rp, $addr);
 
     }
 
