@@ -13,7 +13,6 @@ use Unicate\Swindler\Core\AddressInterface;
 
 class Address implements AddressInterface {
 
-
     private $data;
 
     private $street;
@@ -53,28 +52,28 @@ class Address implements AddressInterface {
      * @return string
      */
     public function getStreet(): string {
-        return $this->street;
+        return !empty ($this->street) ? $this->street : '';
     }
 
     /**
      * @return string
      */
     public function getStreetNo(): string {
-        return $this->streetNo;
+        return !empty ($this->streetNo) ? $this->streetNo : '';
     }
 
     /**
      * @return string
      */
     public function getZipCode(): string {
-        return $this->zipCode;
+        return !empty ($this->zipCode) ? $this->zipCode : '';
     }
 
     /**
      * @return string
      */
     public function getPlace(): string {
-        return $this->place;
+        return !empty ($this->place) ? $this->place : '';
     }
 
 

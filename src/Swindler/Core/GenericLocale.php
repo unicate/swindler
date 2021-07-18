@@ -13,7 +13,7 @@ class GenericLocale {
     protected $randomPattern;
     protected $address;
 
-    public function __construct(RandomPattern $randomPattern, AddressInterface $address) {
+    public function __construct(Randomizer $randomPattern, AddressInterface $address) {
         $this->randomPattern = $randomPattern;
         $this->address = $address;
 

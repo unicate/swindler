@@ -1,13 +1,13 @@
 <?php
 
 
-use Unicate\Swindler\Core\RandomPattern;
+use Unicate\Swindler\Core\Randomizer;
 use PHPUnit\Framework\TestCase;
 
 class RandomStringTest extends TestCase {
 
     public function testMobilePhoneNo() {
-        $rand = new RandomPattern();
+        $rand = new Randomizer();
         $n = 0;
         while ($n < 100) {
             echo $rand
@@ -28,7 +28,7 @@ class RandomStringTest extends TestCase {
 
     public function testMail() {
         $n = 0;
-        $rand = new RandomPattern();
+        $rand = new Randomizer();
         while ($n < 100) {
             echo (string)$rand
                 ->setStringLC(3, 10)
@@ -44,7 +44,7 @@ class RandomStringTest extends TestCase {
 
 
     public function testDates() {
-        $rand = new RandomPattern();
+        $rand = new Randomizer();
         echo (string)$rand
             ->set('Some Date: ')
             ->setDateTime('01.07.2021', '10.07.2022', 'Y-m-d H:i')

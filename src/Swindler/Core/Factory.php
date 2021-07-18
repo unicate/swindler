@@ -16,7 +16,7 @@ class Factory {
 
     public static function create($locale = 'de_CH'): LocaleInterface {
         $localeClass = self::getLocaleClass($locale);
-        $rp = new RandomPattern();
+        $rp = new Randomizer();
         $addr = new Address();
         return new $localeClass($rp, $addr);
 
