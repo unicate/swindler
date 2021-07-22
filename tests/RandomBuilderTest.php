@@ -4,6 +4,7 @@
 use Unicate\Swindler\Core\RandomBuilder;
 use Unicate\Swindler\Core\Randomizer;
 use PHPUnit\Framework\TestCase;
+use Unicate\Swindler\Plugins\SamplePlugin\AddressPlugin;
 
 class RandomBuilderTest extends TestCase {
 
@@ -105,8 +106,77 @@ class RandomBuilderTest extends TestCase {
         $this->assertEquals(15, strlen($str));
     }
 
+    public function testAddArrayEntry() {
+        $str = $this->builder->addArrayEntry(['a', 'b', 'c'])->toString();
+        $this->assertEquals('c', $str);
+    }
+
     public function test__toString() {
         $str = (string)$this->builder->addRandString(15, 15, 'AbCd');
         $this->assertEquals('CddbbddCdbbCbAA', $str);
     }
+
+    public function testPhoneNumber() {
+        $str = $this->builder
+            ->addArrayEntry(['+41 76', '+41 (0) 76', '078', '0041 79'])
+            ->add(' ')
+            ->addRandNumber(100, 999)
+            ->add(' ')
+            ->addRandNumber(0, 99, 2)
+            ->add(' ')
+            ->addRandNumber(0, 99, 2)
+            ->toString();
+
+        $this->assertEquals('0041 79 563 96 89', $str);
+
+        $str = $this->builder
+            ->addArrayEntry(['+41 76', '+41 (0) 76', '078', '0041 79'])
+            ->add(' ')
+            ->addRandNumber(100, 999)
+            ->add(' ')
+            ->addRandNumber(0, 99, 2)
+            ->add(' ')
+            ->addRandNumber(0, 99, 2)
+            ->toString();
+
+        $this->assertEquals('+41 (0) 76 360 89 77', $str);
+    }
+
+    public function testEmail() {
+        $str = $this->builder
+            ->addRandStringLC(3, 31, Randomizer::$DEFAULT_ALPHA)
+            ->addArrayEntry(['', '-', '_', '.'])
+            ->addRandStringLC(3, 32, Randomizer::$DEFAULT_ALPHA)
+            ->add('@')
+            ->addArrayEntry(['example.com', 'example.org', 'example.net', 'example.edu', 'example.de'])
+            ->toString();
+
+        $this->assertEquals('ayunpuogwrtcrilgtxetuxcgdhhj.rncosebtrhjmqhdeydlwsv@example.org', $str);
+    }
+
+    public function testPhone() {
+            $normal = $this->builder
+                ->addArrayEntry(['+41 52', '+41 (0) 52', '052'])
+                ->add(' ')
+                ->addRandNumber(100, 999)
+                ->add(' ')
+                ->addRandNumber(0, 99, 2)
+                ->add(' ')
+                ->addRandNumber(0, 99, 2)
+                ->toString();
+
+            $free = $this->builder
+                ->addArrayEntry(['0800', '0900'])
+                ->add(' ')
+                ->addRandNumber(0, 999, 3)
+                ->add(' ')
+                ->addRandNumber(0, 999, 3)
+                ->toString();
+
+            $result = $this->builder
+                ->addArrayEntry([$normal, $free])->toString();
+
+        $this->assertEquals('0800 289 897', $result);
+    }
+
 }

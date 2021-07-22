@@ -7,26 +7,29 @@
 
 declare(strict_types=1);
 
-namespace Unicate\Swindler\Locales\de_CH;
+namespace Unicate\Swindler\Core\DataTypes;
 
-use Unicate\Swindler\Core\AddressInterface;
+use Unicate\Swindler\Core\DataTypes\AddressInterface;
 
 class Address implements AddressInterface {
 
     private $data;
 
-    private $street;
+    public $street;
     private $streetNo;
     private $zipCode;
     private $place;
+
 
     /**
      * Address constructor.
      */
     public function __construct() {
+        /*
         $f_contents = file_get_contents(__DIR__ . "/data/adresses.json");
         $arr = json_decode($f_contents, true);
         $this->data = $arr['data'];
+        */
     }
 
     public function loadRandomAddress(): AddressInterface {
@@ -74,6 +77,10 @@ class Address implements AddressInterface {
      */
     public function getPlace(): string {
         return !empty ($this->place) ? $this->place : '';
+    }
+
+    public function getCountry(): string {
+        // TODO: Implement getCountry() method.
     }
 
 

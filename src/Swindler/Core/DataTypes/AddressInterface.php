@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Unicate\Swindler\Core;
+namespace Unicate\Swindler\Core\DataTypes;
 
 interface AddressInterface {
 
@@ -19,6 +19,7 @@ interface AddressInterface {
 
     public function getPlace(): string;
 
-    public function loadRandomAddress(): AddressInterface;
+    public function getCountry(): string;
+
 
 }

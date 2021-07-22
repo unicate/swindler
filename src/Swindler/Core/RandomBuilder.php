@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Unicate\Swindler\Core;
 
+use Unicate\Swindler\Plugins\SamplePlugin\AddressPlugin;
+
 /**
  * Class RandomOut
  * @package Unicate\Swindler\Core
@@ -24,13 +26,17 @@ class RandomBuilder {
      * @var
      */
     private $out;
+    public  $plugin;
 
-    /**
-     * RandomOut constructor.
-     */
-    public function __construct(Randomizer $randomizer) {
+
+    public function __construct(Randomizer $randomizer, $plugin = null) {
         $this->randomizer = $randomizer;
+
+        $this->plugin = new $plugin();
+
+
     }
+
 
 
     /**
@@ -66,6 +72,11 @@ class RandomBuilder {
         } else {
             $this->add($number);
         }
+        return $this;
+    }
+
+    public function addArrayEntry($array) {
+        $this->add($this->randomizer->getArrayEntry($array));
         return $this;
     }
 
