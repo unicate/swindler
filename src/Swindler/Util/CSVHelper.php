@@ -9,27 +9,18 @@ declare(strict_types=1);
 
 namespace Unicate\Swindler\Util;
 
-use Unicate\Swindler\Core\GenericLocale;
-use Unicate\Swindler\Core\LocaleInterface;
+class CSVHelper {
 
-class AddressHelper {
+    public function __construct() {
+        $this->fileToJson('simpsons');
+    }
 
-
-
-
-    public function fileToArray(): Address {
-        $f_contents = file(__DIR__ . "/adresses.csv");
-        //file_put_contents(__DIR__ . "/adresses.json", serialize($f_contents));
-        //file_put_contents(__DIR__ . "/adresses.json", print_r($f_contents, true));
-        //file_put_contents(__DIR__ . "/adresses.json", json_encode($f_contents, JSON_PRETTY_PRINT));
-
-
-        //$csv= file_get_contents($file_name);
+    public function fileToJson($filename) {
 
         /**
          * https://stackoverflow.com/questions/28118101/convert-csv-to-json-using-php/28118243
          */
-        $file_name = __DIR__ . "/adresses.csv";
+        $file_name = __DIR__ . sprintf('/%s.csv', $filename);
         if (($handle = fopen($file_name, "r")) !== FALSE) {
             $csvs = [];
             while(! feof($handle)) {
@@ -50,13 +41,15 @@ class AddressHelper {
             }
             $json = json_encode($datas, JSON_PRETTY_PRINT);
             fclose($handle);
-            //print_r($json);
-            file_put_contents(__DIR__ . "/adresses.json", '{ "data": '.$json.'}');
+            file_put_contents(__DIR__ . sprintf('/%s.json', $filename), '{ "data": '.$json.'}');
+            echo "************************************************\n";
+            echo sprintf("Successfully created file %s.json\n", $filename);
+            echo "************************************************\n";
         }
 
 
-        return $this;
     }
 
 
 }
+new CSVHelper();

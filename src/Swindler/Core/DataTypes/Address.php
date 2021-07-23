@@ -9,79 +9,105 @@ declare(strict_types=1);
 
 namespace Unicate\Swindler\Core\DataTypes;
 
-use Unicate\Swindler\Core\DataTypes\AddressInterface;
-
-class Address implements AddressInterface {
-
-    private $data;
-
-    public $street;
-    private $streetNo;
-    private $zipCode;
-    private $place;
-
+/**
+ * Class Address
+ * @package Unicate\Swindler\Core\DataTypes
+ */
+class Address {
 
     /**
-     * Address constructor.
+     * @var string
      */
-    public function __construct() {
-        /*
-        $f_contents = file_get_contents(__DIR__ . "/data/adresses.json");
-        $arr = json_decode($f_contents, true);
-        $this->data = $arr['data'];
-        */
-    }
+    private string $street;
 
-    public function loadRandomAddress(): AddressInterface {
+    /**
+     * @var string
+     */
+    private string $streetNo;
 
-        $pos = mt_rand(0, count($this->data) - 1);
-        $randAddress = $this->data[$pos];
+    /**
+     * @var string
+     */
+    private string $zipCode;
 
-        $mapColumn = [
-            'place' => 'DPLZNAME',
-            'zipCode' => 'DPLZ4',
-            'street' => 'STRNAME',
-            'streetNo' => 'DEINR'
-        ];
+    /**
+     * @var string
+     */
+    private string $place;
 
-        foreach ($mapColumn as $key => $value) {
-            $this->$key = $randAddress[$value];
-        }
-
-        return $this;
-    }
+    /**
+     * @var string
+     */
+    private string $country;
 
     /**
      * @return string
      */
     public function getStreet(): string {
-        return !empty ($this->street) ? $this->street : '';
+        return $this->street;
+    }
+
+    /**
+     * @param string $street
+     */
+    public function setStreet(string $street): void {
+        $this->street = $street;
     }
 
     /**
      * @return string
      */
     public function getStreetNo(): string {
-        return !empty ($this->streetNo) ? $this->streetNo : '';
+        return $this->streetNo;
+    }
+
+    /**
+     * @param string $streetNo
+     */
+    public function setStreetNo(string $streetNo): void {
+        $this->streetNo = $streetNo;
     }
 
     /**
      * @return string
      */
     public function getZipCode(): string {
-        return !empty ($this->zipCode) ? $this->zipCode : '';
+        return $this->zipCode;
+    }
+
+    /**
+     * @param string $zipCode
+     */
+    public function setZipCode(string $zipCode): void {
+        $this->zipCode = $zipCode;
     }
 
     /**
      * @return string
      */
     public function getPlace(): string {
-        return !empty ($this->place) ? $this->place : '';
+        return $this->place;
     }
 
+    /**
+     * @param string $place
+     */
+    public function setPlace(string $place): void {
+        $this->place = $place;
+    }
+
+    /**
+     * @return string
+     */
     public function getCountry(): string {
-        // TODO: Implement getCountry() method.
+        return $this->country;
     }
 
+    /**
+     * @param string $country
+     */
+    public function setCountry(string $country): void {
+        $this->country = $country;
+    }
 
 }

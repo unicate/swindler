@@ -43,8 +43,10 @@ class Randomizer {
      * Randomizer constructor.
      * @param int $seed
      */
-    public function __construct(int $seed = 1) {
-        $this->seed($seed);
+    public function __construct(int $seed = null) {
+        if (!is_null($seed)){
+            $this->seed($seed);
+        }
     }
 
     private function seed($seed) {
