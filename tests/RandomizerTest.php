@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class RandomizerTest extends TestCase {
 
-    private $randomizer;
+    private Randomizer $randomizer;
 
     protected function setUp() {
         parent::setUp();
@@ -66,5 +66,15 @@ class RandomizerTest extends TestCase {
             'H:i'
         );
         $this->assertEquals('13:58', $date);
+    }
+
+    public function testGetText() {
+        $words = $this->randomizer->getText(2, 10);
+        $this->assertEquals(9, str_word_count($words));
+        $this->assertEquals('Lorem ipsum dolor sit amet, consectetur adipisici elit, sed.', $words);
+
+        $words = $this->randomizer->getText(5, 5);
+        $this->assertEquals(5, str_word_count($words));
+        $this->assertEquals('Lorem ipsum dolor sit amet.', $words);
     }
 }

@@ -179,4 +179,13 @@ class RandomBuilderTest extends TestCase {
         $this->assertEquals('0800 289 897', $result);
     }
 
+    public function testGetText() {
+        $str = $this->builder
+            ->add('Hello ')
+            ->addRandText(5, 5)
+            ->toString();
+        $this->assertEquals(6, str_word_count($str));
+        $this->assertEquals('Hello Lorem ipsum dolor sit amet.', $str);
+    }
+
 }
