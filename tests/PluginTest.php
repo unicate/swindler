@@ -36,9 +36,14 @@ class PluginTest extends TestCase {
          * @var Person $person
          */
         $plugin = PluginFactory::create(SimpsonsPersonPlugin::class);
-        $person = $plugin->getData();
-        echo $person->getFirstName() . ' ' . $person->getLastName() . "\n";
-        echo $person->getEmail() ."\n";
+        $n= 0;
+        while ($n < 100) {
+            $person = $plugin->getData();
+            echo $person->getFirstName() . ' ' . $person->getLastName() . "\n";
+            echo $person->getEmail() ."\n";
+            $n++;
+        }
+
 
 
 

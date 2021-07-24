@@ -1,6 +1,6 @@
 # Swindler
 
-Swindler is a PHP library that generates fake test data for you.
+Swindler - Create fake test data. Simple & extensible.
 
 WORK IN PROGRESS!
 
