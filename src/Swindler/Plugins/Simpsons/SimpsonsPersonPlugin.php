@@ -53,16 +53,29 @@ class SimpsonsPersonPlugin implements PluginInterface {
         $salutation = $randAddress['salutation'];
         $firstname = $randAddress['firstname'];
         $lastname = $randAddress['lastname'];
-        $mailDomain = $this->randomizer->getArrayEntry(['@example.com', '@example.org']);
-        $mailSeparator = $this->randomizer->getArrayEntry(['-', '_', '.', '']);
-        $email = strtolower($firstname . $mailSeparator . $lastname . $mailDomain);
+        $email = $this->mailHelper($firstname, $lastname);
 
-        $identity = new Person();;
+
+        $identity = new Person();
         $identity->setSalutation($salutation);
         $identity->setFirstName($firstname);
         $identity->setLastName($lastname);
         $identity->setEmail($email);
         return $identity;
+    }
+
+    /**
+     * @param string $firstname
+     * @param string $lastname
+     * @return string
+     */
+    private function mailHelper(string $firstname, string $lastname): string {
+        $domain = $this->randomizer->getArrayEntry(['@example.com', '@example.org']);
+        $separator = $this->randomizer->getArrayEntry(['-', '_', '.', '']);
+        $separator = (empty($firstname) || empty($lastname)) ? '' : $separator;
+        $email = strtolower($firstname . $separator . $lastname . $domain);
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        return $email;
     }
 
 

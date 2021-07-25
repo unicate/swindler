@@ -17,15 +17,17 @@ class PluginTest extends TestCase {
          */
         $plugin = PluginFactory::create(SwissPersonPlugin::class);
         $person = $plugin->getData();
-        $str = $person->getSalutation() ."\n";
-        $str .=  $person->getFirstName() . ' ' . $person->getLastName() . "\n";
-        $str .= $person->getEmail() ."\n";
+        $str = $person->getSalutation() . "\n";
+        $str .= $person->getFirstName() . ' ' . $person->getLastName() . "\n";
+        $str .= $person->getEmail() . "\n";
         echo $str;
+        echo "-------------------------- \n";
 
         /**
          * @var Address $address
          */
         $plugin = PluginFactory::create(SwissAddressPlugin::class);
+
         $address = $plugin->getData();
         $str = $address->getStreet() . " " . $address->getStreetNo() . "\n";
         $str .= $address->getCountry() . "-" . $address->getZipCode() . " " . $address->getPlace() . "\n";
@@ -36,15 +38,11 @@ class PluginTest extends TestCase {
          * @var Person $person
          */
         $plugin = PluginFactory::create(SimpsonsPersonPlugin::class);
-        $n= 0;
-        while ($n < 100) {
-            $person = $plugin->getData();
-            echo $person->getFirstName() . ' ' . $person->getLastName() . "\n";
-            echo $person->getEmail() ."\n";
-            $n++;
-        }
 
-
+        $person = $plugin->getData();
+        echo $person->getFirstName() . ' ' . $person->getLastName() . "\n";
+        echo $person->getEmail() ."\n";
+        echo "-------------------------- \n";
 
 
         $this->assertEquals(1, 1);

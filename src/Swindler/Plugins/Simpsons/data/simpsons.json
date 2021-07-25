@@ -126,8 +126,8 @@
     },
     {
         "salutation": "Mr.",
-        "firstname": "",
-        "lastname": "Fat Tony"
+        "firstname": "Fat Tony",
+        "lastname": ""
     },
     {
         "salutation": "Ms",
@@ -541,8 +541,8 @@
     },
     {
         "salutation": "Mr",
-        "firstname": "",
-        "lastname": "Groundskeeper Willie"
+        "firstname": "Willie",
+        "lastname": ""
     },
     {
         "salutation": "Mr",
