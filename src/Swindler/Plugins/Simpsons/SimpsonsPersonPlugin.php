@@ -55,7 +55,6 @@ class SimpsonsPersonPlugin implements PluginInterface {
         $lastname = $randAddress['lastname'];
         $email = $this->mailHelper($firstname, $lastname);
 
-
         $identity = new Person();
         $identity->setSalutation($salutation);
         $identity->setFirstName($firstname);

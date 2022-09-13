@@ -32,7 +32,7 @@ class SwissAddressPlugin implements PluginInterface {
     public function getData(): Address {
         $randAddress = $this->randomizer->getArrayEntry($this->data);
 
-        $address = new Address();;
+        $address = new Address();
         $address->setStreet($randAddress['STRNAME']);
         $address->setStreetNo($randAddress['DEINR']);
         $address->setPlace($randAddress['DPLZNAME']);
